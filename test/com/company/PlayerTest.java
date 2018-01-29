@@ -50,5 +50,11 @@ class PlayerTest {
 
     @Test
     void getHandValue() {
+        realPlayer player = new realPlayer();
+        Card one = new Card(Value.Two, Suit.Diamond);
+        Card two = new Card(Value.Ace, Suit.Club);
+        player.setHand(one, two);
+        int expectedValue = 13;
+        assertEquals(expectedValue, player.getHandValue());
     }
 }
