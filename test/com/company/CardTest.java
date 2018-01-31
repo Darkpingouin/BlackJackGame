@@ -9,23 +9,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CardTest {
 
+    /**
+     * Method to test the getSuit() method
+     */
     @Test
     void getSuit() {
         Card card = new Card(Value.Ace, Suit.Club);
-        if (card.getSuit() != Suit.Club) {
-            throw new AssertionError();
-        } else {
-            return;
-        }
+        assertEquals(Suit.Club, card.getSuit());
     }
 
+    /**
+     * Method to test the getValue() method
+     */
     @Test
     void getValue() {
         Card card = new Card(Value.Ace, Suit.Club);
-        assertEquals(card.getValue(), Value.Ace);
+        assertEquals(Value.Ace, card.getValue());
     }
 
 
+    /**
+     * Method to test the print() method
+     */
     @Test
     void print() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();

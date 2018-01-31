@@ -9,6 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class PlayerTest {
 
+    /**
+     * Method to test the getHand() method
+     */
     @Test
     void getHand() {
         realPlayer player = new realPlayer();
@@ -22,6 +25,9 @@ class PlayerTest {
         assertEquals(hand[1].getSuit(), two.getSuit());
     }
 
+    /**
+     * Method to test the drawCard() method
+     */
     @Test
     void drawCard() {
         realPlayer player = new realPlayer();
@@ -35,6 +41,9 @@ class PlayerTest {
         assertEquals(hand[2].getSuit(), card.getSuit());
     }
 
+    /**
+     * Method to test the setHand() method
+     */
     @Test
     void setHand() {
         realPlayer player = new realPlayer();
@@ -48,6 +57,9 @@ class PlayerTest {
         assertEquals(hand[1].getSuit(), two.getSuit());
     }
 
+    /**
+     * Method to test the getHandValue() method
+     */
     @Test
     void getHandValue() {
         realPlayer player = new realPlayer();

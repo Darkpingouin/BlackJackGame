@@ -29,7 +29,7 @@ public abstract class Player {
     public abstract void printHand();
 
     /**
-     * Methid to add a Card to the player's hand
+     * Method to add a Card to the player's hand
      * @param card card to add to the hand
      */
     public abstract void drawCard(Card card);
