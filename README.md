@@ -2,7 +2,9 @@
 
 Black Jack Game created during the **CECS274** Class at **CSULB**
 
-![alt text](https://render.bitstrips.com/v2/cpanel/14980f25-7fb0-47b1-9e82-5262e2233e17-1574316d-13de-4af3-a5df-c1b0f944326d-v1.png?transparent=1&palette=1)
+![alt text](https://render.bitstrips.com/v2/cpanel/14980f25-7fb0-47b1-9e82-5262e2233e17-2159e7f4-ff2e-4eea-aa3d-f27c381c0ebb-v1.png?transparent=1&palette=1)
+
+//ADD INDEX HERE
 
 ## Rules
 
