@@ -2,55 +2,103 @@ package com.company;
 
 import java.util.Scanner;
 
-public class BlackJack {
-    public realPlayer player;
-    public Dealer dealer;
-    public Deck deck;
-    public Scanner reader = new Scanner(System.in);
-    public boolean continueDrawing;
-    public boolean continueGame;
+import static javafx.application.Platform.exit;
 
-    public BlackJack() {
-        this.player = new realPlayer();
-        this.dealer = new Dealer();
+public class BlackJack {
+    private realPlayer player;
+    private Dealer dealer;
+    private Deck deck;
+    private Scanner reader = new Scanner(System.in);
+
+    /**
+     * Black Constructor initialises player and computer
+     */
+    BlackJack() {
+        player = new realPlayer();
+        dealer = new Dealer();
         System.out.println("Welcome to Black Jack, what is your Name ?");
         String name = reader.next();
-        this.player.setName(name);
+        player.setName(name);
     }
 
-    public void Play() {
-        if (this.deck == null || this.deck.getSize() < 20) {
+    /**
+     * Menu of the game
+     */
+    public void Menu()
+    {
+        int option;
+        while (true) {
+            System.out.println("\n---------------------------GAME-MENU----------------------------");
+            System.out.println("\t1- Create a new deck.");
+            System.out.println("\t2- Deal 4 cards and show the number of remaining cards.");
+            System.out.println("\t3- Shuffle the deck and show the cards.");
+            System.out.println("\t4- Play the Blackjack game.");
+            System.out.println("\t5- Quit.");
+            System.out.println("----------------------------------------------------------------\n");
+            option = reader.nextInt();
+            switch (option) {
+                case 1:
+                    System.out.println("New deck created");
+                    createDeck();
+                    break;
+                case 2:
+                    dealCards();
+                    break;
+                case 3:
+                    shuffleDeck();
+                    break;
+                case 4:
+                    deck = null;
+                    Play();
+                    break;
+                case 5:
+                    System.out.println("Goodbye " + player.getName() + ". It was a great time. See you again soon.\nOr maybe not, who am I to judge you ? ¯\\_(ツ)_/¯\n ");
+                    return;
+                default:
+                    System.out.println("Error: " + option + " is not a valid option.");
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Game loop
+     */
+    private void Play() {
+        if (deck == null || deck.getSize() < 20) {
             deck = new Deck();
             deck.Shuffle();
         }
-        if (this.player.getMoney() > 0 && askBet(this.player)) {
-            this.continueDrawing = true;
-            this.player.setHand(deck.Draw(), deck.Draw());
-            this.dealer.setHand(deck.Draw(), deck.Draw());
-            this.player.printHand();
-            this.dealer.printHand();
-            while (this.continueDrawing && this.player.getHandValue() < 21 && this.dealer.getHandValue() < 21)
-                this.continueDrawing = this.askDraw(this.player);
-            while (this.dealer.getHandValue() < 17 && this.player.getHandValue() <= 21)
-                this.dealer.drawCard(deck.Draw());
-            this.dealer.revealHand();
-            this.player.printHand();
-            if (this.player.getHandValue() > this.dealer.getHandValue() && this.player.getHandValue() <= 21 || this.dealer.getHandValue() > 21) {
-                System.out.println("Player " + this.player.getName() + " wins.\n");
-                this.player.addMoney(this.player.getBet() * 2);
+        while (player.getMoney() > 0 && askBet(player)) {
+            player.setHand(deck.Draw(), deck.Draw());
+            dealer.setHand(deck.Draw(), deck.Draw());
+            player.printHand();
+            dealer.printHand();
+            player.play(deck);
+            if (player.getHandValue() <= 21)
+                dealer.play(deck);
+            dealer.revealHand();
+            player.printHand();
+            if (player.getHandValue() > dealer.getHandValue() && player.getHandValue() <= 21 || dealer.getHandValue() > 21) {
+                System.out.println("Player " + player.getName() + " wins.\n");
+                player.addMoney(player.getBet() * 2);
             } else {
                 System.out.println("Dealer wins.\n");
-                this.player.addMoney(this.player.getBet() * -1);
+                player.addMoney(player.getBet() * -1);
             }
-            this.player.setHand(deck.Draw(), deck.Draw());
-            this.dealer.setHand(deck.Draw(), deck.Draw());
-            Play();
+            player.setHand(deck.Draw(), deck.Draw());
+            dealer.setHand(deck.Draw(), deck.Draw());
         }
-        if (this.player.getMoney() == 0)
+        if (player.getMoney() == 0)
             System.out.println("You lost all your money Bro.");
     }
 
-    public boolean askBet(realPlayer player) {
+    /**
+     * Method to ask to the player to bet
+     * @param player player to ask
+     * @return boolean representing if the player still wants to play.
+     */
+    private boolean askBet(realPlayer player) {
         int bet = -1;
 
         while (bet < 0 || bet > player.getMoney()) {
@@ -63,41 +111,41 @@ public class BlackJack {
         }
         player.setBet(bet);
         System.out.print("\n");
-        if (bet == 0)
-            return false;
-        return true;
+        return bet != 0;
     }
 
-    public boolean askDraw(realPlayer player) {
-        String response = "";
-        while (!response.contains("y") && !response.contains("n") && player.getHandValue() < 21) {
-            System.out.println("Do you want a card [y/n]?");
-            response = reader.next();
-            System.out.print("\n");
+
+    /**
+     * Method to create a new deck
+     */
+    private void createDeck() {
+        deck = new Deck();
+    }
+
+    /**
+     * Method to shuffle the deck;
+     */
+    private void shuffleDeck() {
+        if (deck == null)
+            System.out.println("Please create a deck first by using option 1 in the menu.");
+        else {
+            deck.Shuffle();
+            deck.Print();
         }
-        if (response.contains("y")) {
-            player.drawCard(deck.Draw());
-            player.printHand();
-            return true;
+    }
+
+    /**
+     * Method that deals 4 cards from the deck and shows the amount of cards remaining
+     */
+    private void dealCards() {
+        if (deck == null)
+            System.out.println("Please create a deck first by using option 1 in the menu.");
+        else {
+            deck.Draw();
+            deck.Draw();
+            deck.Draw();
+            deck.Draw();
+            System.out.println("The size of the deck is " + deck.getSize());
         }
-        return false;
     }
-
-    public void createDeck() {
-        this.deck = new Deck();
-    }
-
-    public void shuffleDeck() {
-        this.deck.Shuffle();
-        this.deck.Print();
-    }
-
-    public void dealCards() {
-        this.deck.Draw();
-        this.deck.Draw();
-        this.deck.Draw();
-        this.deck.Draw();
-        System.out.println("The size of the deck is " + this.deck.getSize());
-    }
-
 }

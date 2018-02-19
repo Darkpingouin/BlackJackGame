@@ -11,7 +11,7 @@ public abstract class Player {
 
 
     /** Cards he has in hand. */
-    protected Card[] hand;
+    Card[] hand;
 
 
     /**
@@ -70,5 +70,11 @@ public abstract class Player {
         }
         return handValue;
     }
+
+    /**
+     * Method representing a players turn
+     * @param deck deck of cards to draw from
+     */
+    public abstract void play(Deck deck);
 
 }

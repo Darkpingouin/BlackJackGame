@@ -14,7 +14,7 @@ public class Dealer extends Player {
     /**
      * Simple constructor for the dealer
      */
-    public Dealer()
+    Dealer()
     {
     }
 
@@ -25,7 +25,7 @@ public class Dealer extends Player {
     public void printHand() {
         System.out.println("Dealer Hand:");
         int i = 0;
-        for (Card card : this.hand)
+        for (Card card : hand)
         {
             if (i == 0)
                 card.print();
@@ -40,8 +40,8 @@ public class Dealer extends Player {
      * Method to print the dealer's hand completely with it's value
      */
     public void revealHand() {
-        System.out.println("Dealer has a total of " + this.getHandValue());
-        for (Card card : this.hand)
+        System.out.println("Dealer has a total of " + getHandValue());
+        for (Card card : hand)
         {
                 card.print();
         }
@@ -56,9 +56,19 @@ public class Dealer extends Player {
     {
         System.out.print("Dealer get a card of ");
         card.print();
-        Card[] newHand = Arrays.copyOf(this.hand, this.hand.length + 1);
-        newHand[this.hand.length] = card;
-        this.hand = newHand;
+        Card[] newHand = Arrays.copyOf(hand, hand.length + 1);
+        newHand[hand.length] = card;
+        hand = newHand;
+    }
+
+    /**
+     * Method representing a players turn
+     * @param deck deck of cards to draw from
+     */
+    public void play(Deck deck)
+    {
+        while (getHandValue() < 17)
+            drawCard(deck.Draw());
     }
 
 }

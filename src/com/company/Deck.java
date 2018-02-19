@@ -16,12 +16,12 @@ public class Deck {
      * Constructor of the deck
      * Create a new deck of 52 cards
      */
-    public Deck() {
+    Deck() {
         int index = 0;
-        this.cards = new Card[Suit.values().length * Value.values().length];
+        cards = new Card[Suit.values().length * Value.values().length];
         for (Suit suit : Suit.values()) {
             for (Value value : Value.values()) {
-                this.cards[index++] = new Card(value, suit);
+                cards[index++] = new Card(value, suit);
             }
         }
     }
@@ -31,7 +31,7 @@ public class Deck {
      */
     public void Print()
     {
-        for (Card card : this.cards)
+        for (Card card : cards)
         {
             card.print();
         }
@@ -43,13 +43,13 @@ public class Deck {
     public void Shuffle() {
         Random r = new Random();
         for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < this.cards.length; j++) {
-                int x = r.nextInt(this.cards.length);
-                int y = r.nextInt(this.cards.length);
+            for (int j = 0; j < cards.length; j++) {
+                int x = r.nextInt(cards.length);
+                int y = r.nextInt(cards.length);
                 Card temp;
-                temp = this.cards[x];
-                this.cards[x] = this.cards[y];
-                this.cards[y] = temp;
+                temp = cards[x];
+                cards[x] = cards[y];
+                cards[y] = temp;
             }
         }
 
@@ -61,7 +61,7 @@ public class Deck {
      */
     public int getSize()
     {
-        return this.cards.length;
+        return cards.length;
     }
 
     /**
@@ -70,10 +70,10 @@ public class Deck {
      */
     public Card Draw()
     {
-        if (this.cards.length <= 0)
+        if (cards.length <= 0)
             return null;
-        Card card = this.cards[0];
-        this.cards = Arrays.copyOfRange(this.cards, 1, this.cards.length);
+        Card card = cards[0];
+        cards = Arrays.copyOfRange(cards, 1, cards.length);
         return card;
     }
 }

@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * Player is the class representing a player of the BlackJack game
@@ -18,13 +19,15 @@ public class realPlayer extends Player {
     /** Amount of money the player wants to bet. */
     private int bet;
 
+    private Scanner reader = new Scanner(System.in);
+
     /**
      * Basic constructor for a player
      * Init the amount of money to $100
      * Init the bet to 0
      * Set default name to "Jack Black"
      */
-    public realPlayer()
+    realPlayer()
     {
         this.money = 100;
         this.bet = 0;
@@ -106,5 +109,24 @@ public class realPlayer extends Player {
         Card[] newHand = Arrays.copyOf(this.hand, this.hand.length + 1);
         newHand[this.hand.length] = card;
         this.hand = newHand;
+    }
+
+    /**
+     * Method representing a players turn
+     * @param deck deck of cards to draw from
+     */
+    public void play(Deck deck)
+    {
+        String response = "";
+        while (!response.contains("y") && !response.contains("n") && this.getHandValue() < 21) {
+            System.out.println("Do you want a card [y/n]?");
+            response = reader.next();
+            System.out.print("\n");
+        }
+        if (response.contains("y")) {
+            this.drawCard(deck.Draw());
+            this.printHand();
+            this.play(deck);
+        }
     }
 }
