@@ -2,7 +2,15 @@
 
 Black Jack Game created during the **CECS274** Class at **CSULB**
 
-![alt text](https://render.bitstrips.com/v2/cpanel/14980f25-7fb0-47b1-9e82-5262e2233e17-1574316d-13de-4af3-a5df-c1b0f944326d-v1.png?transparent=1&palette=1)
+![alt text](https://render.bitstrips.com/v2/cpanel/14980f25-7fb0-47b1-9e82-5262e2233e17-2159e7f4-ff2e-4eea-aa3d-f27c381c0ebb-v1.png?transparent=1&palette=1)
+
+## Table of contents
+
+- [Rules](#rules)
+- [Card Values](#card-values)
+- [Output](#output)
+- [Sources](#sources)
+- [UML](#uml)
 
 ## Rules
 
@@ -40,6 +48,10 @@ there is a tie, or he draws a value higher than the user.
 | Three | 3  |
 | Two   | 2  |
 
+## Output
+
+![output](https://user-images.githubusercontent.com/15813261/36395304-63b89c94-156d-11e8-8f39-1970440c07be.png)
+
 ## Sources
 
 You can find the sources [here](https://github.com/Darkpingouin/BlackJackGame/tree/master/src/com/company)
@@ -47,5 +59,10 @@ You can find the sources [here](https://github.com/Darkpingouin/BlackJackGame/tr
 You can find the test classes [here](https://github.com/Darkpingouin/BlackJackGame/tree/master/test/com/company)
 
 And you can read the JavaDoc [here]()
+
+## UML
+
+![blackjackuml](https://user-images.githubusercontent.com/15813261/36394250-373d96ce-1568-11e8-867a-5a8684927433.png)
+
 
 
