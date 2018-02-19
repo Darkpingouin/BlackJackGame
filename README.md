@@ -50,4 +50,9 @@ You can find the test classes [here](https://github.com/Darkpingouin/BlackJackGa
 
 And you can read the JavaDoc [here]()
 
+## UML
+
+![blackjackuml](https://user-images.githubusercontent.com/15813261/36394250-373d96ce-1568-11e8-867a-5a8684927433.png)
+
+
 
