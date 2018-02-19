@@ -4,7 +4,11 @@ Black Jack Game created during the **CECS274** Class at **CSULB**
 
 ![alt text](https://render.bitstrips.com/v2/cpanel/14980f25-7fb0-47b1-9e82-5262e2233e17-2159e7f4-ff2e-4eea-aa3d-f27c381c0ebb-v1.png?transparent=1&palette=1)
 
-//ADD INDEX HERE
+- [BlackJackGame](#)
+	- [Rules](#)
+	- [Card Values](#)
+	- [Sources](#)
+	- [UML](#)
 
 ## Rules
 
@@ -41,6 +45,10 @@ there is a tie, or he draws a value higher than the user.
 | Four  | 4  |
 | Three | 3  |
 | Two   | 2  |
+
+## Output
+
+![output](https://user-images.githubusercontent.com/15813261/36395304-63b89c94-156d-11e8-8f39-1970440c07be.png)
 
 ## Sources
 
