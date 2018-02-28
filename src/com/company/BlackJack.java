@@ -2,8 +2,6 @@ package com.company;
 
 import java.util.Scanner;
 
-import static javafx.application.Platform.exit;
-
 public class BlackJack {
     private realPlayer player;
     private Dealer dealer;
@@ -65,11 +63,11 @@ public class BlackJack {
      * Game loop
      */
     private void Play() {
-        if (deck == null || deck.getSize() < 20) {
-            deck = new Deck();
-            deck.Shuffle();
-        }
         while (player.getMoney() > 0 && askBet(player)) {
+            if (deck == null || deck.getSize() < 20) {
+                deck = new Deck();
+                deck.Shuffle();
+            }
             player.setHand(deck.Draw(), deck.Draw());
             dealer.setHand(deck.Draw(), deck.Draw());
             player.printHand();
@@ -146,6 +144,7 @@ public class BlackJack {
             deck.Draw();
             deck.Draw();
             System.out.println("The size of the deck is " + deck.getSize());
+            deck.Print();
         }
     }
 }
